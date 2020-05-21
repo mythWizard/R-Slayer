@@ -10,6 +10,7 @@ Map::Map(){
 	ground.loadFromFile("assets/Placeholder/BasicTile.png");
 	mossWall.loadFromFile("assets/Placeholder/MossyWall.png");
 	mossGround.loadFromFile("assets/Placeholder/MossyTile.png");
+	//coin.setSrgb(true);
 	coin.loadFromFile("assets/Placeholder/Coin.png");
 	bomb.loadFromFile("assets/Placeholder/Bomb.png");
 	potion.loadFromFile("assets/Placeholder/Potion.png");
@@ -210,9 +211,17 @@ void Map::generate(int a, int b, int level){
 
 	for(int i = 0; i < roomAttempts; ++i){
 		int rx = rand() % b;
+		if(rx % 2 == 1)
+			++rx;
 		int ry = rand() % a;
+		if(ry % 2 == 1)
+			++ry;
 		int rw = 4 + (rand() % (b / 2));
 		int rh = 4 + (rand() % (a / 2));
+		if(rw % 2 == 0)
+			++rw;
+		if(rh % 2 == 0)
+			++rh;
 		if(rx + rw < b && ry + rh < a){
 			if(checkRoom(rx, ry, rw, rh)){
 				createRoom(rx, ry, rw, rh);
@@ -467,6 +476,9 @@ void Map::draw(sf::RenderWindow& window, Player hero){
 				s.setTexture(ground);
 				window.draw(s);
 				s.setTexture(coin);
+				s.setScale(0.25, 0.25);
+				//cout << coin.isSrgb() << endl;
+
 				//rect.setFillColor(sf::Color::Yellow);
 			}else if(floor[i][j] == '$'){
 				s.setTexture(shop);

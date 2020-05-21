@@ -27,8 +27,9 @@ int gamemode = 2;
 // 9 = Shop
 
 int main(){
-
-	sf::RenderWindow window(sf::VideoMode(width, height), "R@ Slayer");//, sf::Style::Fullscreen);
+	sf::ContextSettings set;
+	set.sRgbCapable = false;
+	sf::RenderWindow window(sf::VideoMode(width, height), "R@ Slayer", sf::Style::Default, set);//, sf::Style::Fullscreen);
 	window.setFramerateLimit(60);
 
 	Player hero;

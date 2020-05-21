@@ -72,7 +72,9 @@ void Player::draw(sf::RenderWindow& window){
 		if(inventory.size() > i){
 			if(inventory[i].type == "COIN"){
 				s.setTexture(inventory[i].coin);
+				//s.scale(0.25, 0.25);
 				window.draw(s);
+				//s.scale(4, 4);
 				stringstream sout;
 				sout << inventory[i].amt;
 				sf::Text textAmt(sout.str(), alagard, 16);
